@@ -7,6 +7,7 @@ import com.reto.pruebatecnicalogistica.servicios.implementacion.PuertoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class PuertoController {
     public List<Puerto> ObtenerPuertos(){
         return puertoService.ObtenerPuertos();
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/guardar")
     public ResponseEntity<Puerto> guardarPuerto(@RequestBody Puerto puerto){
         Puerto puertoGuardar =  puertoService.CrearPuerto(puerto);
@@ -36,13 +37,13 @@ public class PuertoController {
 
         return puertoService.ObtenerPuertoPorId(id);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/actualizar/{id}")
     public ResponseEntity<Puerto> actualizarPuerto(@RequestBody Puerto puerto,@PathVariable("id") Long id ){
 
         return new ResponseEntity<Puerto>(puertoService.ActualizarPuerto(id,puerto), HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(value = "/eliminar/{id}")
     public ResponseEntity<Void> eliminarPuerto(@PathVariable Long id){
         Optional puerto = null;

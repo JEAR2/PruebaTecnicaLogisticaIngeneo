@@ -7,6 +7,7 @@ import com.reto.pruebatecnicalogistica.servicios.implementacion.LogisticaMaritim
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class LogisticaMaritimaController {
     public List<LogisticaMaritima> ObtenerLogisticaMaritima(){
         return logisticaMaritimaService.ObtenerLogisticaMaritima();
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/guardar")
     public ResponseEntity<LogisticaMaritima> guardarLogisticaMaritima(@RequestBody LogisticaMaritima logisticaMaritima){
         if(logisticaMaritima.getCantidadProducto()>10){
@@ -39,13 +40,13 @@ public class LogisticaMaritimaController {
 
         return logisticaMaritimaService.ObtenerLogisticaMaritimaPorId(id);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/actualizar/{id}")
     public ResponseEntity<LogisticaMaritima> actualizarLogisticaMaritima(@RequestBody LogisticaMaritima logisticaMaritima,@PathVariable("id") Long id ){
 
         return new ResponseEntity<LogisticaMaritima>(logisticaMaritimaService.ActualizarLogisticaMaritima(id,logisticaMaritima), HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(value = "/eliminar/{id}")
     public ResponseEntity<Void> eliminarLogisticaCamiones(@PathVariable Long id){
         Optional logisticaMaritima;

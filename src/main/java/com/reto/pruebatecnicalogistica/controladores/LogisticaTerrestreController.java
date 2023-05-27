@@ -6,6 +6,7 @@ import com.reto.pruebatecnicalogistica.servicios.implementacion.LogisticaTerrest
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class LogisticaTerrestreController {
     public List<LogisticaTerrestre> ObtenerLogisticaTerrestre(){
         return logisticaTerrestreService.ObtenerLogisticaTerrestre();
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/guardar")
     public ResponseEntity<LogisticaTerrestre> guardarLogisticaTerrestre(@RequestBody LogisticaTerrestre logisticaTerrestre){
         if(logisticaTerrestre.getCantidadProducto()>10){
@@ -39,13 +40,13 @@ public class LogisticaTerrestreController {
 
         return logisticaTerrestreService.ObtenerLogisticaTerrestrePorId(id);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = "/actualizar/{id}")
     public ResponseEntity<LogisticaTerrestre> actualizarLogisticaTerrestre(@RequestBody LogisticaTerrestre logisticaCamiones,@PathVariable("id") Long id ){
 
         return new ResponseEntity<LogisticaTerrestre>(logisticaTerrestreService.ActualizarLogisticaTerrestre(id,logisticaCamiones), HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(value = "/eliminar/{id}")
     public ResponseEntity<Void> eliminarLogisticaTerrestre(@PathVariable Long id){
         Optional logisticaCamiones = null;
