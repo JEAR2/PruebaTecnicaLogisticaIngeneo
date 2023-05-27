@@ -46,7 +46,7 @@ public class AuthController {
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuarioDto nuevoUsuarioDto, BindingResult bindingResult){
-        System.out.println("wrwerwer");
+
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(new Mensaje("Campos incorrectos o email inválido"), HttpStatus.BAD_REQUEST);
         }
