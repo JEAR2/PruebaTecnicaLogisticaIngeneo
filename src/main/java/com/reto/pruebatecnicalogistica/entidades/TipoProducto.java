@@ -18,10 +18,10 @@ public class TipoProducto {
     private Long Id;
     private String nombre;
     private String descripcion;
-    @OneToMany(mappedBy = "tipoProducto", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "tipoProducto", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<LogisticaMaritima> logisticaMaritima;
-    @OneToMany(mappedBy = "tipoProducto", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "tipoProducto", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<LogisticaTerrestre> logisticaTerrestre;
 }

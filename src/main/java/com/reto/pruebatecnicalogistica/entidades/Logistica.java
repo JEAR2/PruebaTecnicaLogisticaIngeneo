@@ -2,10 +2,14 @@ package com.reto.pruebatecnicalogistica.entidades;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 @Data
-
-public abstract class Logistica {
+public class Logistica {
+    private Long id;
     private int cantidadProducto;
     private Date fechaRegistro;
     private Date fechaEntrega;
@@ -15,6 +19,5 @@ public abstract class Logistica {
     public Logistica() {
     }
 
-    abstract String getNumeroGuia();
 
 }

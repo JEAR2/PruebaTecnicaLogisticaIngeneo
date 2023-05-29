@@ -25,6 +25,7 @@ public class LogisticaTerrestreController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/guardar")
     public ResponseEntity<LogisticaTerrestre> guardarLogisticaTerrestre(@RequestBody LogisticaTerrestre logisticaTerrestre){
+
         if(logisticaTerrestre.getCantidadProducto()>10){
             logisticaTerrestre.setDescuento(0.05);
         }

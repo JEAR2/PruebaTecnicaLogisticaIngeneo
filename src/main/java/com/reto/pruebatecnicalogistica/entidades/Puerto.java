@@ -20,11 +20,10 @@ public class Puerto {
     private Long Id;
     @NotBlank
     private String nombre;
-    @NotBlank
     private Long telefono;
     @NotBlank
     private String ubicacion;
-    @OneToMany(mappedBy = "puerto", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "puerto", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<LogisticaMaritima> logisticaMaritima;
 }
