@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "puerto")
 public class Puerto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @NotBlank
     private String nombre;

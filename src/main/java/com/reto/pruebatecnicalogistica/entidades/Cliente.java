@@ -15,21 +15,20 @@ import java.util.List;
 @Table(name = "cliente")
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @NotBlank
     private Long Identificacion;
     @NotBlank
     private String nombre;
-    @NotBlank
     private Long telefono;
     @NotBlank
     private String sexo;
     @NotBlank
     private String Correo;
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<LogisticaMaritima> logisticaMaritima;
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<LogisticaTerrestre> logisticaTerrestre;
 }

@@ -16,14 +16,14 @@ import java.util.List;
 @Table(name = "bodega")
 public class Bodega {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @NotBlank
     private String nombre;
-    @NotBlank
     private Long telefono;
     @NotBlank
     private String ubicacion;
-    @OneToMany(mappedBy = "bodega", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "bodega", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<LogisticaTerrestre> logisticaTerrestre;
 }

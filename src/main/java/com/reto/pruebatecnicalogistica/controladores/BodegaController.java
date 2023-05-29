@@ -25,6 +25,8 @@ public class BodegaController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/guardar")
     public ResponseEntity<Bodega> guardarBodega(@RequestBody Bodega bodega){
+
+        bodega.setTelefono(Long.valueOf(bodega.getTelefono()));
         Bodega bodegaGuardar =  bodegaService.CrearBodega(bodega);
         return new ResponseEntity<>(bodegaGuardar, HttpStatus.OK);
     }

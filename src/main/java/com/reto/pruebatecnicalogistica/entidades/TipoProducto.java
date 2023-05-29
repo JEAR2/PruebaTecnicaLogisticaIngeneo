@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "tipoProducto")
 public class TipoProducto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String nombre;
     private String descripcion;
